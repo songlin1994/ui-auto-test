@@ -1,0 +1,18 @@
+# 屏蔽ide的配置文件
+.idea
+
+# 屏蔽mac电脑的配置文件
+.DS_Store
+
+# 屏蔽缓存文件
+.pytest_cache
+
+# 屏蔽 allure 报告文件
+report
+xml
+
+# 屏蔽虚拟环境
+venv
+
+# 屏蔽日志文件
+*.log
