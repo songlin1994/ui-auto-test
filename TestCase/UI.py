@@ -30,7 +30,6 @@ def input_demo2(driver):
 
 def check_box(driver):
     checkbox_els = driver.find_elements_by_class_name('checkbox')
-    print(checkbox_els)
     checkbox_els[0].click()
     time.sleep(1)
     checkbox_els[1].click()
@@ -53,7 +52,7 @@ def input_demo3(driver):
     number_el = driver.find_element_by_xpath('//input[@type="number"]')
     number_el.send_keys('20')
 
-    driver.find_element_by_xpath('//textarea').send_keys('只要E的够快,队友的问号就追不上你')
+    driver.find_element_by_tag_name('textarea').send_keys('只要E的够快,队友的问号就追不上你')
     time.sleep(2)
 
 def select_demo(driver):
@@ -71,15 +70,7 @@ def select_demo(driver):
     s.select_by_visible_text('周龙3')
     time.sleep(1)
 
-if __name__ == '__main__':
-    driver = webdriver.Chrome('../chromedriver/chromedriver.exe')
-    # driver.get 打开一个指定网页
-    driver.get("http://192.168.60.146:8080/demo1.html")
-    # 等待几秒
-    time.sleep(2)
-
-    # input_demo(driver)
-
+def bro_demo(driver):
     # 定位超链接 (超链接的名字全写)
     driver.find_element_by_link_text('当当').click()
     time.sleep(3)
@@ -99,9 +90,36 @@ if __name__ == '__main__':
     time.sleep(3)
 
 
+if __name__ == '__main__':
+    driver = webdriver.Chrome('../chromedriver/chromedriver.exe')
+    driver.maximize_window()
+
+    # driver.get 打开一个指定网页
+    driver.get("http://192.168.60.146:8080/demo1.html")
+    button_el = driver.find_element_by_xpath('//input[@value="普通按钮"]')
+    button_el.click()
+    # 窗口最大化
+    driver.switch_to.alert.send_keys('阿胜多负少')
+
+    # 最小化
+    # driver.minimize_window()
+
+    # 等待几秒
+    time.sleep(2)
+    driver.switch_to.alert.accept()
+    time.sleep(2)
+
+    # input_demo(driver)
+    input_demo3(driver)
+
+
+
 
     # 关闭浏览器
     driver.quit()
     # driver.close()  也可以关闭浏览器,但是无法关闭驱动程序 ,一般用quit ,关闭的更彻底
 
     pass
+
+    # xpath 包含字符定位:  //td[contains(text(),'多选框')]
+    # //td[text()='reset:重置按钮']
